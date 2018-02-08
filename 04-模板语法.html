@@ -1,0 +1,24 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>模板语法</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+</head>
+<body>
+    <!--双大括号将数据解释为普通文本-->
+    <span>Message:{{msg}}</span>
+    <span v-once>这个将不会改变：{{msg}}</span>
+    <!--识别数据为html，并显示-->
+    <p>Using mustaches: {{ rawHtml }}</p>
+    <p>Using v-html directive: <span v-html="rawHtml"></span></p>
+    <!--使用JavaScript表达式-->
+    {{ number + 1 }}
+    {{ ok ? 'YES' : 'NO' }}
+    {{ message.split('').reverse().join('') }}
+
+    <script>
+
+    </script>
+</body>
+</html>
