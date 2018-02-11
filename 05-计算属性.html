@@ -1,0 +1,41 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>计算属性</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+</head>
+<body>
+<div id="example">
+    <p>Original message: "{{ message }}"</p>
+    <!--计算属性-->
+    <p>Computed reversed message: "{{ reversedMessage }}"</p>
+    <!--这个是方法-->
+    <p>Computed reversed message: "{{ reversedMessage_m() }}"</p>
+
+</div>
+<script>
+    var vm = new Vue({
+        el: '#example',
+        data: {
+            message: 'Hello'
+        },
+        computed: {
+            // 计算属性的 getter
+            reversedMessage: function () {
+                // `this` 指向 vm 实例
+                return this.message.split('').reverse().join('')
+            }
+        },
+        methods: {
+            reversedMessage_m: function () {
+                return this.message.split('').reverse().join('')
+            }
+        }
+    });
+
+    // 计算属性是根据依赖数据进行缓存的，只要message不变，多次访问reversedMessage就不会变，
+    // 方法的话每次重新渲染都会重新调用，没有缓存
+</script>
+</body>
+</html>

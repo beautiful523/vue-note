@@ -1,0 +1,75 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+</head>
+<style>
+    div{
+        width: 100px;
+        height:100px;
+    }
+    .active{
+        background-color: aqua;
+    }
+    .text_danger{
+        background-color: brown;
+    }
+</style>
+<body>
+    <div class="static" v-bind:class="{active:is_active, text_danger:has_error}"></div>
+    <div class="static1" v-bind:class="class_object"></div>
+    <div class="static2" v-bind:class="class_object"></div>
+    <div class="static3" v-bind:class="[active_class,error_class]"></div>
+
+
+
+</body>
+<script>
+    var staticEle = new Vue({
+        el:'.static',
+        data: {
+            is_active: true,// 这里定义类的值的值
+            has_error: false
+        },
+    });
+//    is_active的值为真，active类存在，显示的正方形为蓝色
+
+    var staticEle1 = new Vue({
+        el:'.static1',
+        data: {
+            class_object:{
+                active: false, //这里定义类的值
+                text_danger: true
+            }
+        },
+    });
+
+    var staticEle2 = new Vue({
+        el:'.static2',
+        data: {
+            isActive: true,
+            error: null
+        },
+        computed: {
+            class_object: function () {
+                return {
+                    active: this.isActive && !this.error,
+                    'text-danger': this.error && this.error.type === 'fatal'
+                }
+            }
+        }
+    });
+    staticEle2.error = true;
+    staticEle2.error.type = 'fatal'; //todo
+
+    var staticEle3 = new Vue({
+        el:'.static3',
+        data:{
+            active_class:'active',
+            error_class:'text_danger'
+        }
+    });
+</script>
+</html>
