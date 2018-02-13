@@ -50,19 +50,22 @@
         el:'.static2',
         data: {
             isActive: true,
-            error: null
+            error: {
+                type:'fatal',
+            }
+
+
         },
         computed: {
             class_object: function () {
                 return {
                     active: this.isActive && !this.error,
-                    'text-danger': this.error && this.error.type === 'fatal'
+                    'text_danger': this.error && this.error.type === 'fatal'
                 }
             }
         }
     });
-    staticEle2.error = true;
-    staticEle2.error.type = 'fatal'; //todo
+
 
     var staticEle3 = new Vue({
         el:'.static3',

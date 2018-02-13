@@ -1,0 +1,81 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>v-for</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+
+</head>
+<body>
+    <ul id="example-1">
+        <li v-for="item in items">
+            {{ item.message }}
+        </li>
+    </ul>
+    <script>
+        var example1 = new Vue({
+            el: '#example-1',
+            data: {
+                items: [
+                    { message: 'Foo' },
+                    { message: 'Bar' }
+                ]
+            }
+        })
+    </script>
+
+    <ul id="example-2">
+        <li v-for="(item,index) in items">
+            {{ parentMessage }} - {{index }} - {{item.message}}
+        </li>
+    </ul>
+    <script>
+        var example2 = new Vue({
+            el:'#example-2',
+            data:{
+                parentMessage: 'Parent',
+                items:[
+                    {message:'Foo'},
+                    {message:'Bar'}
+                ]
+            }
+        })
+    </script>
+
+    <ul id="example-3">
+        <li v-for="i in object">
+            {{i}}
+        </li>
+    </ul>
+    <script>
+        new Vue({
+            el:'#example-3',
+            data:{
+                object:{
+                    firstName:'john',
+                    lastName:'Doe',
+                    age:30
+                }
+            }
+        })
+    </script>
+
+    <ul id="example-4">
+        <li v-for="(value,key,index) in object">
+            {{index}}.{{key}}:{{value}}
+        </li>
+    </ul>
+    <script>
+        new Vue({
+            el:'#example-4',
+            data:{
+                object:{
+                    firstName:'john',
+                    age:30,
+                    lastName:'Doe'
+                }
+            }
+        })
+    </script>
+</body>
+</html>

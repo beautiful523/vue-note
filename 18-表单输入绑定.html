@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-bind="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+</head>
+<body>
+
+<!--表单里面的value和Vue里面的对应变量一致-->
+<div id="app1">
+    <input v-model="message" placeholder="edit">
+    <p>Message:{{message}}</p>
+</div>
+<script>
+    new Vue({
+        el:'#app1',
+        data:{
+            message:'aa'
+        }
+    })
+</script>
+
+<div id="app2">
+    <span> Multiline messge is:</span>
+    <p style="white-space: pre-line">{{message}}</p>
+    <br>
+    <textarea v-model="message" placeholder="add multiple lines"></textarea>
+</div>
+<script>
+    new Vue({
+        el:'#app2',
+        data:{
+            message:'aa'
+        }
+    })
+</script>
+
+<div id="app3">
+    <input type="checkbox" id="checkbox" v-model="checked">
+    <label for="checkbox">{{checked}}</label>
+</div>
+<script>
+    new Vue({
+        el:'#app3',
+        data:{
+            checked:'aaa'
+        }
+    })
+</script>
+<!--多个复选框，绑定到同一个数组：-->
+<div id="app4">
+    <input type="checkbox" id="jack" value="Jack" v-model="checkedNames">
+    <label for="jack">Jack</label>
+    <input type="checkbox" id="john" value="John" v-model="checkedNames">
+    <label for="john">John</label>
+    <input type="checkbox" id="mike" value="Mike" v-model="checkedNames">
+    <label for="mike">Mike</label>
+    <br>
+    <span>Checked names: {{ checkedNames }}</span>
+</div>
+<script>
+    new Vue({
+        el:'#app4',
+        data:{
+            checkedNames: []
+        }
+    })
+</script>
+
+<!--单选按钮-->
+<div id="app5">
+    <input type="radio" id="one" value="One" v-model="picked">
+    <label for="one">One</label>
+    <br>
+    <input type="radio" id="two" value="Two" v-model="picked">
+    <label for="two">Two</label>
+    <br>
+    <span>Picked: {{ picked }}</span>
+</div>
+<script>
+    new Vue({
+        el:'#app5',
+        data:{
+            picked: ''
+        }
+    })
+</script>
+
+<!--选择框-->
+<div id="app6">
+    <select v-model="selected">
+        <option disabled value="">请选择</option>
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+    </select>
+    <span>Selected: {{ selected }}</span>
+</div>
+<script>
+    new Vue({
+        el:'#app6',
+        data:{
+            selected: ''
+        }
+    })
+</script>
+<!--多选选择框-->
+<div id="app7">
+    <select v-model="selected" multiple>
+        <!--<option disabled value="">请选择</option>-->
+        <option>A</option>
+        <option>B</option>
+        <option>C</option>
+    </select>
+    <span>Selected: {{ selected }}</span>
+</div>
+<script>
+    new Vue({
+        el:'#app7',
+        data:{
+            selected: []
+        }
+    })
+</script>
+
+<!--动态渲染-->
+<div id="app8">
+    <select v-model="selected">
+        <option v-for="option in options" v-bind:value="option.value">
+            {{ option.text }}
+        </option>
+    </select>
+    <span>Selected: {{ selected }}</span>
+</div>
+<script>
+    new Vue({
+        el:'#app8',
+        data:{
+            selected: 'A',
+            options: [
+                { text: 'One', value: 'A' },
+                { text: 'Two', value: 'B' },
+                { text: 'Three', value: 'C' }
+                ]
+        }
+    })
+</script>
+</body>
+</html>

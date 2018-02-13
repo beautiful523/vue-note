@@ -1,0 +1,42 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:v-on="http://www.w3.org/1999/xhtml">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+    <script src="https://cdn.jsdelivr.net/npm/vue@2.5.13/dist/vue.js"></script>
+</head>
+<body>
+    <div id="app1">
+        <button v-on:click="say('hi')">Say hi</button>
+        <button v-on:click="say('what')">Say what</button>
+    </div>
+    <script>
+        new Vue({
+            el:'#app1',
+            methods:{
+                say:function(message){
+                    alert(message)
+                }
+            }
+        })
+    </script>
+
+    <div id="app2">
+        <button v-on:click="warn('Form cannot be submitted yet.',$event)">Submit</button>
+    </div>
+    <script>
+        new Vue({
+            el:'#app2',
+            methods:{
+                warn:function(message,event){
+                    //event是原生事件对象，这句话的作用，当点击提交按钮时阻止提交
+                    if (event) event.preventDefault();
+                    alert(message)
+                }
+            }
+        })
+    </script>
+
+
+</body>
+</html>
